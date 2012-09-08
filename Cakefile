@@ -10,7 +10,7 @@ build = (watch, callback) ->
   options = ['-c', '-b','-o', 'lib', 'src']
   options.unshift '-w' if watch
   coffee = exec "coffee #{options.join " "}", (err) ->
-    console.log err
+    console.log err if err?
   coffee.stdout.on 'data', (data) -> print data.toString()
   coffee.stderr.on 'data', (data) -> print data.toString()
   coffee.on 'exit', (status) -> callback?() if status is 0
